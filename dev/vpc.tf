@@ -14,7 +14,7 @@ resource "aws_vpc" "vpc23" {
 
 #ec2.tf
 resource "aws_instance" "server1" {
-     ami =  "ami-0801628222e2e96d6"
+     ami =  "ami-0277fbe7afa8a33a6"
      instance_type = "t2.mirco"
      key_name      = "classkey24"
      tags = {
