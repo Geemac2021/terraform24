@@ -1,16 +1,32 @@
 provider "aws" {
-   region = "us-east-2"  
-}
-
-module "ec2module" {
-    source = "../Modules/ec2"
-    tagname = "class24"
-    ami_id = "ami-00399ec92321828f5"
+  region     = "ca-central-1"
   
 }
 
-module "vpcmodule" {
-  source = "../Modules/vpc"
-  cidr_block = "10.0.0.0/16"
-  vpcname   =  "classic"
+resource "aws_vpc" "vpc23" {
+    cidr_block = "10.10.0.0.0/20"
+    tags = {
+        Name = "myvpc23"
+        Environment = "dev"
+  }
+}
+
+#ec2.tf
+resource "aws_instance" "server1" {
+     ami =  "ami-0801628222e2e96d6"
+     instance_type = "t2 mirco"
+     key_name      = "classkey24"
+     tags = {
+       Name  = "dbserver"
+       Environment = "dev"
+} 
+
+resource "aws_s3_bucket" "mys3" {
+  bucket = "class24"
+  acl    = "private"
+
+  tags = {
+    Name        = "class24abc"
+    Environment = "Dev"
+  }
 }
